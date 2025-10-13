@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fenster Konfigurator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="mb-4">Fenster Konfigurator</h2>
+        <form action="process_konfigurator.php" method="POST">
+            <div class="form-group">
+                <label for="staerke">Fensterstärke:</label>
+                <select class="form-control" id="staerke" name="staerke" required>
+                    <option value="">Bitte wählen</option>
+                    <option value="68mm">68mm Standard</option>
+                    <option value="78mm">78mm Premium</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="lichtstufe">Lichtstufe:</label>
+                <select class="form-control" id="lichtstufe" name="lichtstufe" required>
+                    <option value="">Bitte wählen</option>
+                    <option value="klar">Klar</option>
+                    <option value="milchglas">Milchglas</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="verglasung">Anzahl der Verglasungen:</label>
+                <select class="form-control" id="verglasung" name="verglasung" required>
+                    <option value="">Bitte wählen</option>
+                    <option value="2">2-fach Verglasung</option>
+                    <option value="3">3-fach Verglasung</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="bemessung">Maße (BxH in mm):</label>
+                <input type="text" class="form-control" id="bemessung" name="bemessung" 
+                       placeholder="z.B. 1000x1500" required>
+            </div>
+
+            <div class="form-group">
+                <label for="sonderwuensche">Sonderwünsche:</label>
+                <textarea class="form-control" id="sonderwuensche" name="sonderwuensche" 
+                          rows="3" placeholder="Ihre speziellen Wünsche..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Konfiguration speichern</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
