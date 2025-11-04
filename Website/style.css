@@ -1,0 +1,241 @@
+/* === FTS Podesser – Corporate Design Rot / Schwarz === */
+:root {
+  --primary: #d60000;
+  --dark: #111;
+  --light: #f8f8f8;
+  --text: #333;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: var(--text);
+  background: #fff;
+  scroll-behavior: smooth;
+}
+
+/* === Header === */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  background: var(--dark);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+.logo img {
+  height: 55px;
+  width: auto;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 25px;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: var(--primary);
+}
+
+/* === Hero-Bereich === */
+.hero {
+  text-align: center;
+  padding: 120px 20px;
+  background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+    url('fenster-bg.jpg') center/cover no-repeat;
+  color: white;
+}
+
+.hero h1 {
+  font-size: 2.6rem;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+}
+
+.hero button {
+  background: var(--primary);
+  border: none;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.hero button:hover {
+  background: #ff1e1e;
+}
+
+/* === Sektionen === */
+section {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: var(--dark);
+  position: relative;
+}
+
+h2::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: var(--primary);
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* === Leistungen === */
+.leistungen {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.card {
+  background: var(--light);
+  padding: 30px;
+  border-radius: 10px;
+  flex: 1 1 280px;
+  text-align: center;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  border-top: 4px solid var(--primary);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 5px 14px rgba(0,0,0,0.2);
+}
+
+.card h3 {
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+
+/* === Über uns === */
+#ueber-uns p {
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+/* === Kontaktbereich === */
+.kontaktbereich {
+  background: #fafafa;
+}
+
+.kontakt {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.kontakt div {
+  min-width: 220px;
+}
+
+/* === Footer === */
+footer {
+  background: var(--dark);
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 0.9rem;
+  border-top: 3px solid var(--primary);
+}
+
+/* === Responsive Design === */
+@media (max-width: 900px) {
+  header {
+    flex-direction: column;
+    padding: 15px 20px;
+  }
+
+  nav {
+    margin-top: 10px;
+  }
+
+  .hero h1 {
+    font-size: 2.1rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  section {
+    padding: 60px 15px;
+  }
+
+  #ueber-uns p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero {
+    padding: 90px 10px;
+  }
+
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero button {
+    width: 80%;
+    max-width: 250px;
+  }
+
+  .leistungen {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;
+  }
+
+  .kontakt {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  footer {
+    font-size: 0.85rem;
+  }
+}
