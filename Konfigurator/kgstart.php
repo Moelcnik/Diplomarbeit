@@ -45,7 +45,7 @@
         [
             'id' => 'fenster',
             'title' => 'Fenster',
-            'link' => 'konfigurator', // Link zum Fensterkonfigurator
+            'link' => 'fensterauswahl.php', // Link zum Fensterkonfigurator
             // 'image' => 'placeholder1.jpg'  
         ],
         [

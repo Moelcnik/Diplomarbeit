@@ -7,14 +7,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     try {
-        $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+        $stmt = $conn->prepare("SELECT * FROM user WHERE email = ?");
         $stmt->execute([$email]);
         $user = $stmt->fetch();
 
         if ($user && password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['uid'];
             $_SESSION['email'] = $user['email'];
-            header("Location: dashboard.php");
+            header("Location: ../Website/startseite.html");
             exit();
         } else {
             $error = "Ungültige E-Mail oder Passwort";
@@ -23,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "Datenbankfehler: " . $e->getMessage();
     }
 }
+// ...existing code...
 ?>
 
 <!DOCTYPE html>
@@ -56,9 +57,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <input type="password" class="form-control" id="password" name="password" required>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block">Anmelden</button>
+                            <a href="Website/startseite.html" class="btn btn-secondary">Zur Startseite</a>
                         </form>
                         <div class="text-center mt-3">
-                            <a href="register.php">Noch kein Konto? Hier registrieren</a>
+                            <a href="registerung.php">Noch kein Konto? Hier registrieren</a>
                         </div>
                     </div>
                 </div>
