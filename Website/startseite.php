@@ -15,6 +15,7 @@
     <div class="logo">FTS Podesser</div>
     <nav>
       <a href="#leistungen">Leistungen</a>
+      <a href="../Konfigurator/kgstart.php">Konfigurator</a>
       <a href="#ueber-uns">Über uns</a>
       <a href="#kontakt">Kontakt</a>
     </nav>
