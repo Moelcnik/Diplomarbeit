@@ -23,16 +23,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $bemessung = $_POST['bemessung'] ?? '';
         $anzahl = $_POST['anzahl'] ?? 1;
         $sonderwuensche = $_POST['sonderwuensche'] ?? '';
+        $material = $_SESSION['material'] ?? ''; // Material aus Session
         
         // Daten validieren
         if (empty($staerke) || empty($lichtstufe) || empty($verglasung) || empty($bemessung)) {
             throw new Exception('Bitte alle erforderlichen Felder ausfüllen.');
         }
         
-        // SQL-Statement vorbereiten (Spalte `uid` verwenden, falls `user_uid` in DB nicht existiert)
+        // SQL-Statement vorbereiten
         $sql = "INSERT INTO fenster_konfigurationen 
-            (uid, type, staerke, lichtstufe, verglasung, bemessung, anzahl, sonderwuensche) 
-            VALUES (:uid, :type, :staerke, :lichtstufe, :verglasung, :bemessung, :anzahl, :sonderwuensche)";
+            (uid, type, staerke, lichtstufe, verglasung, bemessung, anzahl, sonderwuensche, material) 
+            VALUES (:uid, :type, :staerke, :lichtstufe, :verglasung, :bemessung, :anzahl, :sonderwuensche, :material)";
         
         $stmt = $conn->prepare($sql);
         
@@ -45,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(':bemessung', $bemessung, PDO::PARAM_STR);
         $stmt->bindParam(':anzahl', $anzahl, PDO::PARAM_INT);
         $stmt->bindParam(':sonderwuensche', $sonderwuensche, PDO::PARAM_STR);
+        $stmt->bindParam(':material', $material, PDO::PARAM_STR);
         
         $stmt->execute();
         
@@ -133,6 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <button type="submit" class="btn btn-primary">Konfiguration speichern</button>
         <a href="fensterauswahl.php" class="btn btn-secondary">Zurück</a>
+        <a href="konfig_senden.php" class="btn btn-info">Meine Konfigurationen</a>
     </form>
 </div>
 

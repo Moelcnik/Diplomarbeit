@@ -13,6 +13,7 @@ try {
         bemessung VARCHAR(255) NOT NULL,
         anzahl INT NOT NULL DEFAULT 1,
         sonderwuensche TEXT,
+        material VARCHAR(50) DEFAULT NULL,
         skizze VARCHAR(255) DEFAULT NULL,
         erstelldatum TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         INDEX idx_user_uid (user_uid),

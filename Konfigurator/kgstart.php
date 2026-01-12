@@ -10,56 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $material = ($_POST['material'] === 'holz') ? 'holz' : 'alu';
     $_SESSION['material'] = $material;
 
-    // --- DB: Bestellung/Eintrag mit Material speichern (fehlertolerant) ---
-    // Passen Sie diese Werte an Ihre Umgebung an:
-    $dbHost = 'localhost';
-    $dbUser = 'db_user';
-    $dbPass = 'db_password';
-    $dbName = 'db_name';
-    $tableName = 'bestellungen'; // <-- ersetze durch Ihren Tabellennamen
-
-    // Optional: user_id aus Session (falls vorhanden) speichern
-    $userId = isset($_SESSION['user_id']) ? (int)$_SESSION['user_id'] : null;
-
-    // Flag ob Insert erfolgreich war (nur für Logging, nicht zwingend erforderlich)
-    $dbSaved = false;
-
-    // 1) Versuche mysqli (wenn installiert)
-    if (extension_loaded('mysqli')) {
-        $mysqli = @new mysqli($dbHost, $dbUser, $dbPass, $dbName);
-        if ($mysqli && $mysqli->connect_errno === 0) {
-            $sql = "INSERT INTO `$tableName` (material, user_id, created_at) VALUES (?, ?, NOW())";
-            if ($stmt = $mysqli->prepare($sql)) {
-                // user_id kann NULL sein; binde als integer (wenn NULL, binde 0 oder handle in DB)
-                $stmt->bind_param('si', $material, $userId);
-                $stmt->execute();
-                $stmt->close();
-                $dbSaved = true;
-            } else {
-                error_log("kgstart.php: mysqli prepare failed: " . $mysqli->error);
-            }
-            $mysqli->close();
-        } else {
-            error_log("kgstart.php: mysqli connect failed: " . ($mysqli->connect_error ?? 'unknown'));
-        }
-
-    // 2) Falls mysqli nicht vorhanden, versuche PDO (pdo_mysql)
-    } elseif (extension_loaded('pdo_mysql')) {
-        try {
-            $dsn = "mysql:host={$dbHost};dbname={$dbName};charset=utf8mb4";
-            $pdo = new PDO($dsn, $dbUser, $dbPass, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-            $stmt = $pdo->prepare("INSERT INTO `$tableName` (material, user_id, created_at) VALUES (:material, :user_id, NOW())");
-            $stmt->execute([':material' => $material, ':user_id' => $userId]);
-            $dbSaved = true;
-        } catch (Exception $e) {
-            error_log("kgstart.php: PDO error: " . $e->getMessage());
-        }
-
-    // 3) Keine MySQL-Erweiterung verfügbar — protokollieren und weitermachen
-    } else {
-        error_log("kgstart.php: Keine MySQL-Erweiterung installiert (mysqli oder pdo_mysql). DB-Insert übersprungen.");
-    }
-    // --- Ende DB ---
+    // Das Material wird in der Session gespeichert und bei der nächsten 
+    // Konfigurationsseite mit gespeichert (siehe konfigurator.php)
 
     // Sicherer Redirect: nur zu fensterauswahl.php erlauben (oder zurück zur Startseite)
     $redirect = $_POST['redirect'] ?? '';
