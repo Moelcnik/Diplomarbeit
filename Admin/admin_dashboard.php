@@ -10,15 +10,15 @@ require_once __DIR__ . '/../Datenbank/dbconectio.php';
 
 $user_uid = $_SESSION['user_id'];
 
-// Überprüfe ob Benutzer Admin ist (uid = 3 basierend auf dem Screenshot)
+// Überprüfe ob Benutzer Admin ist
 try {
-    $stmt = $conn->prepare("SELECT uid, username FROM user WHERE uid = :uid LIMIT 1");
+    $stmt = $conn->prepare("SELECT uid, vorname, nachname, admin FROM user WHERE uid = :uid LIMIT 1");
     $stmt->bindParam(':uid', $user_uid, PDO::PARAM_INT);
     $stmt->execute();
     $user = $stmt->fetch();
     
-    // Admin-Check: Nur UID 3 (Admin) hat Zugriff
-    if (!$user || $user['uid'] != 3) {
+    // Admin-Check: Benutzer muss Admin sein (admin = 'ja' oder uid = 3)
+    if (!$user || ($user['admin'] !== 'ja' && $user['uid'] != 3)) {
         header('Location: ../Website/startseite.php');
         exit();
     }
@@ -33,12 +33,11 @@ $selected_config = null;
 
 // Alle Konfigurationen abrufen
 try {
-    $sql = "SELECT fc.id, fc.user_uid, fc.type, fc.staerke, fc.lichtstufe, fc.verglasung, 
+    $sql = "SELECT fc.fid, fc.uid, fc.type, fc.staerke, fc.lichtstufe, fc.verglasung, 
                    fc.bemessung, fc.anzahl, fc.sonderwuensche, fc.material, fc.skizze, 
-                   fc.erstelldatum, u.email, u.username, 
-                   COALESCE(fc.status, 'neu') as status
+                   fc.erstelldatum, u.email, u.vorname, u.nachname
             FROM fenster_konfigurationen fc
-            LEFT JOIN user u ON fc.user_uid = u.uid
+            LEFT JOIN user u ON fc.uid = u.uid
             ORDER BY fc.erstelldatum DESC";
     
     $stmt = $conn->prepare($sql);
@@ -98,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 if (isset($_GET['id'])) {
     $config_id = intval($_GET['id']);
     foreach ($konfigurationen as $config) {
-        if ($config['id'] == $config_id) {
+        if ($config['fid'] == $config_id) {
             $selected_config = $config;
             break;
         }
@@ -356,7 +355,7 @@ if (isset($_GET['id'])) {
                                     <h6>Status bearbeiten</h6>
                                     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                                         <input type="hidden" name="action" value="update_status">
-                                        <input type="hidden" name="config_id" value="<?php echo $selected_config['id']; ?>">
+                                        <input type="hidden" name="config_id" value="<?php echo $selected_config['fid']; ?>">
 
                                         <div class="form-group">
                                             <label for="status">Status:</label>

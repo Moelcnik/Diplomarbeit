@@ -14,7 +14,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($user && password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['uid'];
             $_SESSION['email'] = $user['email'];
-            header("Location: ../Website/startseite.php");
+            $_SESSION['admin'] = $user['admin'];
+            
+            // Wenn Admin, leite zur Admin-Seite weiter
+            if ($user['admin'] === 'ja' || $user['uid'] == 3) {
+                header("Location: ../Admin/admin_dashboard.php");
+            } else {
+                header("Location: ../Website/startseite.php");
+            }
             exit();
         } else {
             $error = "Ungültige E-Mail oder Passwort";
