@@ -41,69 +41,63 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrierung</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   <link rel="stylesheet" href="../Website/style.css">
 </head>
 <body>
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="text-center">Registrierung</h3>
+    <div class="form-wrapper">
+        <div class="form-container">
+            <div class="form-header">
+                <h3>Registrierung</h3>
+            </div>
+            
+            <div class="form-body">
+                <?php if (isset($error)): ?>
+                    <div class="alert-danger"><?php echo $error; ?></div>
+                <?php endif; ?>
+
+                <form method="POST" action="">
+                    <div class="form-group">
+                        <label for="anrede">Anrede</label>
+                        <select class="form-control" id="anrede" name="anrede" required>
+                            <option value="Herr">Herr</option>
+                            <option value="Frau">Frau</option>
+                            <option value="Divers">Divers</option>
+                        </select>
                     </div>
-                    <div class="card-body">
-                        <?php if (isset($error)): ?>
-                            <div class="alert alert-danger"><?php echo $error; ?></div>
-                        <?php endif; ?>
 
-                        <form method="POST" action="">
-                            <div class="form-group">
-                                <label for="anrede">Anrede</label>
-                                <select class="form-control" id="anrede" name="anrede" required>
-                                    <option value="Herr">Herr</option>
-                                    <option value="Frau">Frau</option>
-                                    <option value="Divers">Divers</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="vorname">Vorname</label>
-                                <input type="text" class="form-control" id="vorname" name="vorname" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="nachname">Nachname</label>
-                                <input type="text" class="form-control" id="nachname" name="nachname" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="email">E-Mail</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="adresse">Adresse</label>
-                                <input type="text" class="form-control" id="adresse" name="adresse" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="password">Passwort</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary btn-block">Registrieren</button>
-                        </form>
-
-                        <div class="text-center mt-3">
-                            <a href="login.php">Bereits registriert? Hier anmelden</a>
-                        </div>
+                    <div class="form-group">
+                        <label for="vorname">Vorname</label>
+                        <input type="text" class="form-control" id="vorname" name="vorname" required>
                     </div>
+
+                    <div class="form-group">
+                        <label for="nachname">Nachname</label>
+                        <input type="text" class="form-control" id="nachname" name="nachname" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-Mail</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="adresse">Adresse</label>
+                        <input type="text" class="form-control" id="adresse" name="adresse" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Passwort</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Registrieren</button>
+                </form>
+
+                <div class="form-link-text">
+                    <a href="login.php">Bereits registriert? Hier anmelden</a>
                 </div>
             </div>
         </div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

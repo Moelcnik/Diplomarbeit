@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
+   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fenster Auswahl</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../Website/style.css">
     <style>
         .window-category {
             margin-bottom: 50px;
@@ -49,15 +49,15 @@
             <h2 class="mb-4">Österreichische Fenster</h2>
             <div class="window-grid">
                 <div class="window-card" onclick="location.href='konfigurator.php'">
-                    <img src="images/placeholder_rechteck.jpg" alt="Rechteckiges Fenster" class="window-image">
+                    <img src="../images/rechteck.png" alt="Rechteckiges Fenster" class="window-image">
                     <h3>Rechteckig</h3>
                 </div>
                 <div class="window-card" onclick="location.href='konfigurator_rund.php'">
-                    <img src="images/placeholder_rund.jpg" alt="Rundes Fenster" class="window-image">
+                    <img src="../images/rund.png" alt="Rundes Fenster" class="window-image">
                     <h3>Rund</h3>
                 </div>
                 <div class="window-card" onclick="location.href='konfigurator_sonderform.php'">
-                    <img src="images/placeholder_sonder.jpg" alt="Sonderform" class="window-image">
+                    <img src="../images/image.png" alt="Sonderform" class="window-image">
                     <h3>Sonderform</h3>
                 </div>
             </div>
@@ -68,15 +68,15 @@
             <h2 class="mb-4">Tschechische Fenster</h2>
             <div class="window-grid">
                 <div class="window-card" onclick="location.href='konfigurator.php'">
-                    <img src="images/placeholder_rechteck.jpg" alt="Rechteckiges Fenster" class="window-image">
+                    <img src="../images/rechteck.png" alt="Rechteckiges Fenster" class="window-image">
                     <h3>Rechteckig</h3>
                 </div>
                 <div class="window-card" onclick="location.href='konfigurator_rund.php'">
-                    <img src="images/placeholder_rund.jpg" alt="Rundes Fenster" class="window-image">
+                    <img src="../images/rund.png" alt="Rundes Fenster" class="window-image">
                     <h3>Rund</h3>
                 </div>
                 <div class="window-card" onclick="location.href='konfigurator_sonderform.php'">
-                    <img src="images/placeholder_sonder.jpg" alt="Sonderform" class="window-image">
+                    <img src="../images/image.png" alt="Sonderform" class="window-image">
                     <h3>Sonderform</h3>
                 </div>
             </div>
@@ -87,15 +87,15 @@
             <h2 class="mb-4">Sonstige Fenster</h2>
             <div class="window-grid">
                 <div class="window-card" onclick="location.href='konfigurator.php'">
-                    <img src="images/placeholder_rechteck.jpg" alt="Rechteckiges Fenster" class="window-image">
+                    <img src="../images/rechteck.png" alt="Rechteckiges Fenster" class="window-image">
                     <h3>Rechteckig</h3>
                 </div>
                 <div class="window-card" onclick="location.href='konfigurator_rund.php'">
-                    <img src="images/placeholder_rund.jpg" alt="Rundes Fenster" class="window-image">
+                    <img src="../images/rund.png" alt="Rundes Fenster" class="window-image">
                     <h3>Rund</h3>
                 </div>
                 <div class="window-card" onclick="location.href='konfigurator_sonderform.php'">
-                    <img src="images/placeholder_sonder.jpg" alt="Sonderform" class="window-image">
+                    <img src="../images/image.png" alt="Sonderform" class="window-image">
                     <h3>Sonderform</h3>
                 </div>
             </div>

@@ -14,14 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($user && password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['uid'];
             $_SESSION['email'] = $user['email'];
-            $_SESSION['admin'] = $user['admin'];
-            
-            // Wenn Admin, leite zur Admin-Seite weiter
-            if ($user['admin'] === 'ja' || $user['uid'] == 3) {
-                header("Location: ../Admin/admin_dashboard.php");
-            } else {
-                header("Location: ../Website/startseite.php");
-            }
+            header("Location: ../Website/startseite.php");
             exit();
         } else {
             $error = "Ungültige E-Mail oder Passwort";
@@ -39,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../Website/style.css">
 </head>
 <body>
     <div class="container mt-5">
